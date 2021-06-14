@@ -7,6 +7,7 @@ import Logout from "./Logout";
 import UserAvatar from "./UserAvatar";
 import AddNew from "./AddNew";
 import { useUser } from "../contexts/user";
+import { Link as DomLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  link: {
+    textDecoration: "none",
   },
 }));
 
@@ -34,7 +38,9 @@ export default function Nav() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Memorizer
+            <DomLink to="/" className={classes.link}>
+              Memorizer
+            </DomLink>
           </Typography>
           {user ? <Icons /> : ""}
         </Toolbar>

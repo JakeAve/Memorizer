@@ -5,7 +5,7 @@ import Slider from "@material-ui/core/Slider";
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 500,
   },
 });
 
@@ -21,7 +21,7 @@ export default function WordSlider(props) {
   return (
     <div className={classes.root}>
       <Typography id="discrete-slider" gutterBottom>
-        Words
+        Percentage of Words to Show
       </Typography>
       <Slider
         defaultValue={100}

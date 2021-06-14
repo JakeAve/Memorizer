@@ -3,6 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import { deepOrange, deepPurple } from "@material-ui/core/colors";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddNew = () => {
+  const history = useHistory();
   const classes = useStyles();
   return (
     <IconButton
@@ -29,6 +31,7 @@ const AddNew = () => {
       className={classes.menuButton}
       color="inherit"
       aria-label="add new script"
+      onClick={() => history.push("/new")}
     >
       <AddIcon />
     </IconButton>

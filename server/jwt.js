@@ -34,7 +34,7 @@ const refreshTokens = async (req, res) => {
     return accessToken;
   } catch (err) {
     console.error(err);
-    throw err;
+    return res.status(403).json({ message: "Forbidden" });
   }
 };
 

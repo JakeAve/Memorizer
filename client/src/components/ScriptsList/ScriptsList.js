@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import List from "@material-ui/core/List";
 import "./ScriptsList.css";
 import ListItem from "@material-ui/core/ListItem";
@@ -9,10 +9,15 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { Link } from "react-router-dom";
 
 const ListItemLink = (props) => {
-  const { _id, content, memorized, lastPracticed } = props;
+  const { _id, content, memorized, lastPracticed, selected } = props;
   <ListItemText primary="Spam" />;
   return (
-    <ListItem button component={Link} to={`/item/${_id}`}>
+    <ListItem
+      button
+      component={Link}
+      to={`/item/${_id}`}
+      selected={_id === selected}
+    >
       <ListItemIcon>
         {memorized ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
       </ListItemIcon>
@@ -25,11 +30,11 @@ const ListItemLink = (props) => {
 };
 
 const ScriptsList = (props) => {
-  const { scripts } = props;
+  const { scripts, selected } = props;
 
   const scriptsList = scripts.map((script) => {
     const { _id } = script;
-    return <ListItemLink key={_id} {...script} />;
+    return <ListItemLink key={_id} {...{ ...script, selected }} />;
   });
 
   return <List className="scripts-list">{scriptsList}</List>;

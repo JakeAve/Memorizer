@@ -1,22 +1,32 @@
 import getUserInfo from "../actions/getUserInfo";
 import refreshToken from "../actions/refreshToken";
 import { useHistory } from "react-router";
-
-const { useContext, createContext, useState, useEffect } = require("react");
+import logoutUser from "../actions/logoutUser";
+import { useContext, createContext, useState, useEffect } from "react";
 
 const UserContext = createContext(null);
-
-const foo = {
-  firstName: "Test",
-  lastName: "test",
-};
 
 export const UserProvider = (props) => {
   const { children } = props;
   const [user, setUser] = useState();
-  const [accessToken, setAccessToken] = useState(null); ///////// set null
+  const [accessToken, setAccessToken] = useState(null);
 
   const history = useHistory();
+
+  const logout = async () => {
+    try {
+      await logoutUser();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUser(null);
+      setAccessToken(null);
+
+      const openRoutes = ["/login", "/register"];
+      if (!openRoutes.includes(history.location.pathname))
+        history.push("/login");
+    }
+  };
 
   const renewToken = async () => {
     try {
@@ -26,8 +36,10 @@ export const UserProvider = (props) => {
         data.accessToken
       );
       if (userSuccess) setUser(userData);
+      else throw new Error("Could not refresh token");
     } catch (err) {
-      setUser(null); /////////// set null
+      console.error(err);
+      logout();
     }
   };
 
@@ -36,18 +48,16 @@ export const UserProvider = (props) => {
     setInterval(() => {
       renewToken();
     }, 14 * 60 * 1000);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     setUser(user);
-    if (user) {
-      history.push("/");
-    }
-  }, [user, history]);
+  }, [user]);
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, setAccessToken, accessToken }}
+      value={{ user, setUser, setAccessToken, accessToken, logout }}
     >
       {children}
     </UserContext.Provider>
