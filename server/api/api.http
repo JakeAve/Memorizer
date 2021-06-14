@@ -1,0 +1,27 @@
+### Get User
+
+GET http://localhost:5000/api/user/60bebc4971e7dd0d9efaa1ac
+
+###
+
+GET http://localhost:5000/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NmYzNDBhMjBjMTdmZTg1NTAzM2MiLCJpYXQiOjE2MjM2ODI5NjIsImV4cCI6MTYyMzY4Mzg2Mn0.d1akYm16vhNlpj9q4QO5kyHGSE95UCnhx5vKFQbZqH8
+
+###
+
+GET http://localhost:5000/api/info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvbzJAZ21haWwuY29tIiwiaWQiOiI2MGJlYmM0OTcxZTdkZDBkOWVmYWExYWMiLCJpYXQiOjE2MjMyODQyMzksImV4cCI6MTYyMzI4NzgzOX0.WMMzrB2xGkLr6-bJN_gQQ64SdeW9_myFcZet8osjwAU
+
+### Get Scripts
+GET http://localhost:5000/api/scripts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM2ODM5ODcsImV4cCI6MTYyMzY4NDg4N30.UYAtQ0YOUvRC4N3kXLwFrJGi_zLGwdGzqP1FV9pnIZ4
+
+
+### Add Script
+POST http://localhost:5000/api/script
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM2ODM5ODcsImV4cCI6MTYyMzY4NDg4N30.UYAtQ0YOUvRC4N3kXLwFrJGi_zLGwdGzqP1FV9pnIZ4
+Content-Type: application/json
+
+{
+    "content": "A long thing we want to try to memorize 3"
+}
