@@ -16,7 +16,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvbzJAZ
 GET http://localhost:5000/api/scripts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM2ODM5ODcsImV4cCI6MTYyMzY4NDg4N30.UYAtQ0YOUvRC4N3kXLwFrJGi_zLGwdGzqP1FV9pnIZ4
 
-
 ### Add Script
 POST http://localhost:5000/api/script
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM2ODM5ODcsImV4cCI6MTYyMzY4NDg4N30.UYAtQ0YOUvRC4N3kXLwFrJGi_zLGwdGzqP1FV9pnIZ4
@@ -24,4 +23,29 @@ Content-Type: application/json
 
 {
     "content": "A long thing we want to try to memorize 3"
+}
+
+### Memorize a Script
+PUT http://localhost:5000/api/script/memorize/60c93a1ec3b7eb6accfd8bc1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM4MDUyMzksImV4cCI6MTYyMzgwNjEzOX0.wh229jj7xPe7kBkP6Tr-9lUiavLrF7jFRcM-EB8_ZXU
+
+### Forget a Script
+PUT http://localhost:5000/api/script/forget/60c93a1ec3b7eb6accfd8bc1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM4MDUyMzksImV4cCI6MTYyMzgwNjEzOX0.wh229jj7xPe7kBkP6Tr-9lUiavLrF7jFRcM-EB8_ZXU
+
+### Delete a Script
+DELETE http://localhost:5000/api/script/60c93232c3b7eb6accfd8bc0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM4MDYzMDAsImV4cCI6MTYyMzgwNzIwMH0.bFBOA9sJzXqYGi1VjjmUI7IjiqddwmJ3LsitcmzDU9I
+
+### Practice a Script
+PUT http://localhost:5000/api/script/practice/60c7fb49a08d893008d11efa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM4MDYzMDAsImV4cCI6MTYyMzgwNzIwMH0.bFBOA9sJzXqYGi1VjjmUI7IjiqddwmJ3LsitcmzDU9I
+
+### Edit a Script
+PUT http://localhost:5000/api/script/60c7fb49a08d893008d11efa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha2VAZ21haWwuY29tIiwiaWQiOiI2MGM3NzM3ZWU5Y2U0MjgxNDIwNzNlMDAiLCJpYXQiOjE2MjM4MDYzMDAsImV4cCI6MTYyMzgwNzIwMH0.bFBOA9sJzXqYGi1VjjmUI7IjiqddwmJ3LsitcmzDU9I
+Content-Type: application/json
+
+{
+    "content": "Some edited content"
 }

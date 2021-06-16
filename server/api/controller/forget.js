@@ -1,11 +1,11 @@
 const { ScriptModel } = require("../../models/Script");
 
-const memorize = async (req, res) => {
+const forget = async (req, res) => {
   try {
     const { id: scriptId } = req.params;
 
     const script = await ScriptModel.findById(scriptId).exec();
-    script.memorized = true;
+    script.memorized = false;
     await script.save();
 
     res.json(script);
@@ -15,4 +15,4 @@ const memorize = async (req, res) => {
   }
 };
 
-module.exports = memorize;
+module.exports = forget;
