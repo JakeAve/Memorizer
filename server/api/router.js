@@ -22,7 +22,7 @@ router.put(
   "/script/practice/:id",
   validateToken,
   checkIfIsUser,
-  require("./controller/memorize")
+  require("./controller/practiceScript")
 );
 router.put(
   "/script/memorize/:id",
