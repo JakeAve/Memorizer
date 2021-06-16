@@ -3,23 +3,58 @@ import React, { useEffect, useState } from "react";
 import WordSlider from "../Slider/Slider";
 import WordContent from "../WordContent/WordContent";
 import MemorizedButton from "../MemorizedButton";
+import performScriptAction, {
+  scriptActions,
+} from "../../actions/performScriptAction";
+import { useUser } from "../../contexts/user";
 
 const Memorizer = (props) => {
-  const { script = {} } = props;
+  const { script = {}, fetchScripts } = props;
+  const {
+    memorized = true,
+    content = "😬",
+    lastPracticed = new Date(),
+    _id = "",
+  } = script;
   const [words, setWords] = useState(100);
-  const [isMemorized, setIsMemorized] = useState(false);
+  const [isMemorized, setIsMemorized] = useState(memorized);
+  const { accessToken } = useUser();
 
   useEffect(() => {
     setWords(100);
   }, [props.script?.content]);
 
   useEffect(() => {
-    if (props.script?.memorized) setIsMemorized(props.script.memorized);
-  }, [props.script?.memorized]);
+    setIsMemorized(memorized);
+    // eslint-disable-next-line
+  }, [_id]);
 
-  const toggleMemorized = () => {};
+  const toggleMemorized = async () => {
+    if (!isMemorized) {
+      setIsMemorized(true);
+      await performScriptAction(accessToken, scriptActions.memorize, _id);
+    }
+    if (isMemorized) {
+      setIsMemorized(false);
+      await performScriptAction(accessToken, scriptActions.forget, _id);
+    }
+    fetchScripts();
+  };
 
-  const { content = "😬", lastPracticed = new Date() } = script;
+  const practiceScript = async () => {
+    await performScriptAction(accessToken, scriptActions.practice, _id);
+    fetchScripts();
+  };
+
+  const relativeDate = () => {
+    const rd = new Intl.RelativeTimeFormat("en", {
+      style: "long",
+      numeric: "auto",
+    });
+    const days = (new Date(lastPracticed) - Date.now()) / (1000 * 3600 * 24);
+    const daysAgo = rd.format(Math.round(days), "days");
+    return daysAgo;
+  };
 
   return (
     <Box mt={3} m={5}>
@@ -38,13 +73,10 @@ const Memorizer = (props) => {
           <MemorizedButton checked={isMemorized} onChange={toggleMemorized} />
         </Grid>
         <Grid item xs={12} container justify="center">
-          <Typography variant="caption">
-            Last practiced:{" "}
-            {lastPracticed ? new Date(lastPracticed).toDateString() : "Never"}
-          </Typography>
+          <Typography variant="caption">Practiced {relativeDate()}</Typography>
         </Grid>
         <Grid item xs={12} container justify="center">
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={practiceScript}>
             Practice Today
           </Button>
         </Grid>

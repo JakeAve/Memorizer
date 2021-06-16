@@ -1,10 +1,14 @@
-const addScript = async (data, token, method = "POST") => {
+export const scriptActions = {
+  memorize: "memorize",
+  practice: "practice",
+  forget: "forget",
+};
+
+const performScriptAction = async (token, action, id) => {
   try {
-    const response = await fetch("/api/script", {
-      method,
-      body: JSON.stringify(data),
+    const response = await fetch(`/api/script/${action}/${id}`, {
+      method: "PUT",
       headers: {
-        "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
     });
@@ -18,4 +22,4 @@ const addScript = async (data, token, method = "POST") => {
   }
 };
 
-export default addScript;
+export default performScriptAction;

@@ -53,7 +53,7 @@ const Home = (props) => {
             fetchScripts={fetchScripts}
           />
         ) : (
-          <Memorizer script={selectedScript} />
+          <Memorizer script={selectedScript} fetchScripts={fetchScripts} />
         )}
       </Grid>
     </Grid>
