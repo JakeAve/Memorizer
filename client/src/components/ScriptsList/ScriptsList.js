@@ -29,15 +29,36 @@ const ListItemLink = (props) => {
   );
 };
 
+const NewContent = (props) => {
+  const { newContent } = props;
+  return (
+    <ListItem button selected>
+      <ListItemIcon>
+        <CheckBoxOutlineBlankIcon />
+      </ListItemIcon>
+      <ListItemText
+        primary={newContent.slice(0, 50)}
+        secondary={new Date().toDateString()}
+      />
+    </ListItem>
+  );
+};
+
 const ScriptsList = (props) => {
-  const { scripts, selected } = props;
+  const { scripts, selected, newContent } = props;
 
   const scriptsList = scripts.map((script) => {
     const { _id } = script;
-    return <ListItemLink key={_id} {...{ ...script, selected }} />;
+    const _selected = newContent ? null : selected;
+    return <ListItemLink key={_id} {...{ ...script, selected: _selected }} />;
   });
 
-  return <List className="scripts-list">{scriptsList}</List>;
+  return (
+    <List className="scripts-list">
+      {newContent ? <NewContent newContent={newContent} /> : ""}
+      {scriptsList}
+    </List>
+  );
 };
 
 export default ScriptsList;

@@ -32,11 +32,12 @@ export const UserProvider = (props) => {
     try {
       const { success, data } = await refreshToken();
       if (success && data.accessToken) setAccessToken(data.accessToken);
+      else throw new Error("Could not refresh token");
       const { success: userSuccess, data: userData } = await getUserInfo(
         data.accessToken
       );
       if (userSuccess) setUser(userData);
-      else throw new Error("Could not refresh token");
+      else throw new Error("Could not find user");
     } catch (err) {
       console.error(err);
       logout();

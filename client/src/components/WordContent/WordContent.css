@@ -1,3 +1,18 @@
+.word-content {
+  cursor: pointer;
+}
+
+/* p.word-content {
+  line-height: 2;
+} */
+
+.word-content span {
+  display: inline-block;
+  cursor: pointer;
+  margin-block: 0.2rem;
+}
+
 .hidden {
-  opacity: 0;
+  color: transparent;
+  background-color: grey;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import { Button, FormControlLabel, Checkbox } from "@material-ui/core";
+import { FormControlLabel, Checkbox } from "@material-ui/core";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 const MemorizedButton = (props) => {

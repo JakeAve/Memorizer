@@ -1,10 +1,18 @@
 import React from "react";
-import { Grid, TextField, Button, Container } from "@material-ui/core";
+import {
+  Grid,
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Box,
+} from "@material-ui/core";
 import addScript from "../../actions/addScript";
 import { useAlert } from "../../contexts/alerts";
 import { useUser } from "../../contexts/user";
 
-const NewScriptForm = () => {
+const NewScriptForm = (props) => {
+  const { setNewContent, fetchScripts } = props;
   const alert = useAlert();
   const { accessToken } = useUser();
 
@@ -15,31 +23,44 @@ const NewScriptForm = () => {
     const payload = {};
     for (const [field, value] of formData) payload[field] = value;
     const { success } = await addScript(payload, accessToken);
-    if (success) alert("success", "Success", 3000);
-    else alert("error", "Something went wrong", 3000);
+    if (success) {
+      alert("success", "Success", 3000);
+      form.querySelector("textarea").value = "";
+      setNewContent("");
+      fetchScripts();
+    } else alert("error", "Something went wrong", 3000);
+  };
+
+  const updateNewContent = (e) => {
+    setNewContent(e.target.value);
   };
 
   return (
-    <Container maxWidth="sm">
-      <form onSubmit={onSubmit}>
-        <Grid container spacing={2}>
-          <TextField
-            multiline
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="content"
-            label="New Script"
-            name="content"
-            autoFocus
-          />
-          <Button type="submit" fullWidth variant="contained" color="primary">
-            Add
-          </Button>
-        </Grid>
-      </form>
-    </Container>
+    <Box mt={5}>
+      <Container maxWidth="sm">
+        <form onSubmit={onSubmit}>
+          <Grid container>
+            <Typography variant="h5">Enter new script</Typography>
+            <TextField
+              multiline
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="content"
+              label="New Script"
+              name="content"
+              autoFocus
+              rows={8}
+              onChange={updateNewContent}
+            />
+            <Button type="submit" fullWidth variant="contained" color="primary">
+              Add
+            </Button>
+          </Grid>
+        </form>
+      </Container>
+    </Box>
   );
 };
 

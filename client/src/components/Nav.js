@@ -38,7 +38,7 @@ export default function Nav() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <DomLink to="/" className={classes.link}>
+            <DomLink to={user ? "/" : "/login"} className={classes.link}>
               Memorizer
             </DomLink>
           </Typography>

@@ -4,7 +4,7 @@ const getScripts = async (req, res) => {
   try {
     const { _id } = req.user;
     const scripts = await UserModel.findById(_id).populate("scripts").exec();
-    res.json(scripts.scripts);
+    res.json(scripts.scripts.reverse());
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
