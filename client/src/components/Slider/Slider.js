@@ -20,8 +20,8 @@ export default function WordSlider(props) {
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider" gutterBottom>
-        Percentage of Words to Show
+      <Typography id="discrete-slider" gutterBottom align="center">
+        Percentage
       </Typography>
       <Slider
         defaultValue={100}
