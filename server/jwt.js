@@ -1,6 +1,6 @@
-const { sign, verify, decode } = require("jsonwebtoken");
-const { UserModel } = require("./models/User");
-const refreshTokenCookieName = "refresh-token";
+const { sign, verify, decode } = require('jsonwebtoken');
+const { UserModel } = require('./models/User');
+const refreshTokenCookieName = 'refresh-token';
 
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
 const refreshTokenSecret = process.env.REFRESH_TOKEN_SECRET;
@@ -15,27 +15,22 @@ const createTokens = (user) => {
 };
 
 const refreshTokens = async (req, res) => {
-  try {
-    const refreshToken = req.cookies[refreshTokenCookieName];
+  const refreshToken = req.cookies[refreshTokenCookieName];
 
-    const { id } = decode(refreshToken);
+  const { id } = decode(refreshToken);
 
-    const user = await UserModel.findById(id).exec();
+  const user = await UserModel.findById(id).exec();
 
-    const validRefreshToken = verify(refreshToken, getRefreshTokenSecret(user));
+  const validRefreshToken = verify(refreshToken, getRefreshTokenSecret(user));
 
-    if (!validRefreshToken) throw new Error("Invalid credentials");
+  if (!validRefreshToken) throw new Error('Invalid credentials');
 
-    const { accessToken, refreshToken: newRefreshToken } = createTokens(user);
+  const { accessToken, refreshToken: newRefreshToken } = createTokens(user);
 
-    res.cookie(refreshTokenCookieName, newRefreshToken, {
-      httpOnly: true,
-    });
-    return accessToken;
-  } catch (err) {
-    console.error(err);
-    return res.status(403).json({ message: "Forbidden" });
-  }
+  res.cookie(refreshTokenCookieName, newRefreshToken, {
+    httpOnly: true,
+  });
+  return accessToken;
 };
 
 const createAccessToken = (user) => {
@@ -44,7 +39,7 @@ const createAccessToken = (user) => {
       { email: user.email, id: user._id },
       accessTokenSecret,
       {
-        expiresIn: "15m",
+        expiresIn: '15m',
       }
     );
 
@@ -59,18 +54,18 @@ const createRefreshToken = (user) => {
     { email: user.email, id: user.id },
     getRefreshTokenSecret(user),
     {
-      expiresIn: "7d",
+      expiresIn: '7d',
     }
   );
   return refreshToken;
 };
 
 const validateToken = async (req, res, next) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
   if (!token)
-    return res.status(401).json({ message: "User not Authenticated!" });
+    return res.status(401).json({ message: 'User not Authenticated!' });
 
   try {
     const validToken = await verify(token, accessTokenSecret);
@@ -85,7 +80,8 @@ const validateToken = async (req, res, next) => {
     }
   } catch (err) {
     console.error(err);
-    return res.status(403).json({ message: "Forbidden" });
+    // res.clearCookie(refreshTokenCookieName);
+    res.status(403).json({ message: 'Forbidden' });
   }
 };
 

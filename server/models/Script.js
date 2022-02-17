@@ -1,10 +1,9 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
 
 const ScriptSchema = new mongoose.Schema({
   content: {
     type: String,
-    required: [true, "Script is required"],
+    required: [true, 'Script is required'],
   },
   memorized: {
     type: Boolean,
@@ -16,6 +15,6 @@ const ScriptSchema = new mongoose.Schema({
   },
 });
 
-const ScriptModel = mongoose.model("Script", ScriptSchema);
+const ScriptModel = mongoose.model('Script', ScriptSchema);
 
 module.exports = { ScriptSchema, ScriptModel };

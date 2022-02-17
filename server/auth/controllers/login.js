@@ -1,10 +1,9 @@
-const { createTokens, refreshTokenCookieName } = require("../../jwt");
-const { UserModel } = require("../../models/User");
-const bcrypt = require("bcrypt");
-const refresh = require("./refresh");
+const { createTokens, refreshTokenCookieName } = require('../../jwt');
+const { UserModel } = require('../../models/User');
+const bcrypt = require('bcrypt');
 
 const fourHundred = (res) =>
-  res.status(400).json({ message: "Invalid Credentials" });
+  res.status(400).json({ message: 'Invalid Credentials' });
 
 const login = async (req, res) => {
   try {
