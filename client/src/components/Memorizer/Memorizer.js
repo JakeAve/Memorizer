@@ -1,20 +1,23 @@
-import { Grid, Typography, Card, Box, Button } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import WordSlider from "../Slider/Slider";
-import WordContent from "../WordContent/WordContent";
-import MemorizedButton from "../MemorizedButton";
+import { Grid, Typography, Card, Box, Button } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import WordSlider from '../Slider/Slider';
+import WordContent from '../WordContent/WordContent';
+import MemorizedButton from '../MemorizedButton';
 import performScriptAction, {
   scriptActions,
-} from "../../actions/performScriptAction";
-import { useUser } from "../../contexts/user";
+} from '../../actions/performScriptAction';
+import { useUser } from '../../contexts/user';
+import { useAlert } from '../../contexts/alerts';
+import deleteScript from '../../actions/deleteScript';
+import { useHistory } from 'react-router';
 
 const Memorizer = (props) => {
   const { script = {}, fetchScripts } = props;
   const {
     memorized = true,
-    content = "😬",
+    content = 'No script selected 😬',
     lastPracticed = new Date(),
-    _id = "",
+    _id = '',
   } = script;
   const [words, setWords] = useState(100);
   const [isMemorized, setIsMemorized] = useState(memorized);
@@ -47,14 +50,34 @@ const Memorizer = (props) => {
   };
 
   const relativeDate = () => {
-    const rd = new Intl.RelativeTimeFormat("en", {
-      style: "long",
-      numeric: "auto",
+    const rd = new Intl.RelativeTimeFormat('en', {
+      style: 'long',
+      numeric: 'auto',
     });
     const days = (new Date(lastPracticed) - Date.now()) / (1000 * 3600 * 24);
-    const daysAgo = rd.format(Math.round(days), "days");
+    const daysAgo = rd.format(Math.round(days), 'days');
     return daysAgo;
   };
+
+  const alert = useAlert();
+  const history = useHistory();
+
+  const deleteCurrentScript = async () => {
+    const { success } = await deleteScript(_id, accessToken);
+    if (success) {
+      alert('success', 'The script was deleted successfully', 3000);
+      history.push('/');
+    } else alert('error', 'An unexpected error occured.');
+  };
+
+  if (!_id)
+    return (
+      <Box mt={7} m={5}>
+        <Typography variant="h5" align="center">
+          No script selected
+        </Typography>
+      </Box>
+    );
 
   return (
     <Box mt={3} m={5}>
@@ -87,7 +110,11 @@ const Memorizer = (props) => {
             </Button>
           </Box>
           <Box mt={5} mx={2}>
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={deleteCurrentScript}
+            >
               Delete
             </Button>
           </Box>

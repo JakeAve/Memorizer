@@ -1,18 +1,18 @@
-import { Grid } from "@material-ui/core";
-import React, { useCallback, useEffect, useState } from "react";
-import ScriptsList from "../../components/ScriptsList/ScriptsList";
-import { useUser } from "../../contexts/user";
-import Memorizer from "../../components/Memorizer/Memorizer";
-import getScripts from "../../actions/getScripts";
-import NewScriptForm from "../../components/NewScriptForm/NewScriptForm";
+import { Grid } from '@material-ui/core';
+import React, { useCallback, useEffect, useState } from 'react';
+import ScriptsList from '../../components/ScriptsList/ScriptsList';
+import { useUser } from '../../contexts/user';
+import Memorizer from '../../components/Memorizer/Memorizer';
+import getScripts from '../../actions/getScripts';
+import NewScriptForm from '../../components/NewScriptForm/NewScriptForm';
 
 const Home = (props) => {
   const { user, accessToken } = useUser();
   const [scripts, setScripts] = useState([]);
-  const [newContent, setNewContent] = useState("");
+  const [newContent, setNewContent] = useState('');
 
   let scriptId = props.match.params.scriptId;
-  const isOnNewPage = props.match.path === "/new";
+  const isOnNewPage = props.match.path === '/new';
 
   const fetchScripts = useCallback(() => {
     if (user && accessToken)
