@@ -1,14 +1,14 @@
-import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
-import { makeStyles } from "@material-ui/core/styles";
-import { deepOrange, deepPurple } from "@material-ui/core/colors";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
+import { makeStyles } from '@material-ui/core/styles';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    "& > *": {
+    display: 'flex',
+    '& > *': {
       margin: theme.spacing(1),
     },
   },
@@ -31,7 +31,7 @@ const AddNew = () => {
       className={classes.menuButton}
       color="inherit"
       aria-label="add new script"
-      onClick={() => history.push("/new")}
+      onClick={() => history.push('/new')}
     >
       <AddIcon />
     </IconButton>

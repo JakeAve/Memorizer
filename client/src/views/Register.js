@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import registerUser from "../actions/registerUser";
-import { useHistory } from "react-router";
-import { useAlert } from "../contexts/alerts";
+import React, { useState } from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import registerUser from '../actions/registerUser';
+import { useHistory } from 'react-router';
+import { useAlert } from '../contexts/alerts';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {'Copyright © '}
       <Link color="inherit">Your Website</Link> {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
@@ -27,16 +27,16 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -45,11 +45,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const noErrors = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
 export default function SignUp() {
@@ -60,16 +60,16 @@ export default function SignUp() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const form = e.target.closest("form");
+    const form = e.target.closest('form');
     const formData = new FormData(form);
     const payload = {};
     for (const [field, value] of formData) payload[field] = value;
     const { success, data } = await registerUser(payload);
     if (success) {
-      alert("success", "User Added!", 3000);
-      history.push("/");
+      alert('success', 'User Added!', 3000);
+      history.push('/');
     } else if (!success && data.errors) {
-      alert("error", "Couldn't save. Fix errors below.", 3000);
+      alert('error', "Couldn't save. Fix errors below.", 3000);
       setFormErrors(noErrors);
       const temp = { ...noErrors };
       Object.entries(data.errors).forEach(([field, obj]) => {
@@ -77,7 +77,7 @@ export default function SignUp() {
       });
       setFormErrors(temp);
     } else if (!success && data.message) {
-      alert("error", data.message);
+      alert('error', data.message);
     }
   };
 
@@ -171,7 +171,7 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
                 Already have an account? Sign in

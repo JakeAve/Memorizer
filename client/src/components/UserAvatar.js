@@ -1,13 +1,13 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { deepOrange, deepPurple } from "@material-ui/core/colors";
-import Avatar from "@material-ui/core/Avatar";
-import { useUser } from "../contexts/user";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import Avatar from '@material-ui/core/Avatar';
+import { useUser } from '../contexts/user';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    "& > *": {
+    display: 'flex',
+    '& > *': {
       margin: theme.spacing(1),
     },
   },
@@ -29,7 +29,7 @@ export default function LetterAvatars() {
   return (
     <div className={classes.root}>
       <Avatar className={classes.orange}>
-        {user ? user.firstName.charAt(0) : ""}
+        {user ? user.firstName.charAt(0) : ''}
       </Avatar>
     </div>
   );

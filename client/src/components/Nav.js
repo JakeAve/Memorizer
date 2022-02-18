@@ -1,13 +1,13 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Logout from "./Logout";
-import UserAvatar from "./UserAvatar";
-import AddNew from "./AddNew";
-import { useUser } from "../contexts/user";
-import { Link as DomLink } from "react-router-dom";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Logout from './Logout';
+import UserAvatar from './UserAvatar';
+import AddNew from './AddNew';
+import { useUser } from '../contexts/user';
+import { Link as DomLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   link: {
-    textDecoration: "none",
+    textDecoration: 'none',
   },
 }));
 
@@ -38,11 +38,11 @@ export default function Nav() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <DomLink to={user ? "/" : "/login"} className={classes.link}>
+            <DomLink to={user ? '/' : '/login'} className={classes.link}>
               Memorizer
             </DomLink>
           </Typography>
-          {user ? <Icons /> : ""}
+          {user ? <Icons /> : ''}
         </Toolbar>
       </AppBar>
     </div>

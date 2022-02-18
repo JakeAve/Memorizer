@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { Link } from 'react-router-dom';
+import { Box } from '@material-ui/core';
 
 const ListItemLink = (props) => {
   const { _id, content, memorized, lastPracticed, selected } = props;
@@ -54,16 +55,18 @@ const ScriptsList = (props) => {
   });
 
   return (
-    <List className="scripts-list">
-      {newContent ? <NewContent newContent={newContent} /> : ''}
-      {scriptsList.length ? (
-        scriptsList
-      ) : (
-        <ListItem>
-          <ListItemText primary="No scripts added" />
-        </ListItem>
-      )}
-    </List>
+    <Box borderRight={1} borderColor="grey.500">
+      <List className="scripts-list">
+        {newContent ? <NewContent newContent={newContent} /> : ''}
+        {scriptsList.length ? (
+          scriptsList
+        ) : (
+          <ListItem>
+            <ListItemText primary="No scripts added" />
+          </ListItem>
+        )}
+      </List>
+    </Box>
   );
 };
 

@@ -5,6 +5,9 @@ const ScriptSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Script is required'],
   },
+  title: {
+    type: String,
+  },
   memorized: {
     type: Boolean,
     default: false,

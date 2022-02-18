@@ -82,28 +82,28 @@ const Memorizer = (props) => {
   return (
     <Box mt={3} m={5}>
       <Grid container spacing={3}>
-        <Grid item xs={12} container justify="center">
+        <Grid item xs={12} container justifyContent="center">
           <Card variant="outlined">
             <Box p={5}>
               <WordContent content={content} words={words} />
             </Box>
           </Card>
         </Grid>
-        <Grid item xs={12} container justify="center">
+        <Grid item xs={12} container justifyContent="center">
           <WordSlider words={words} setWords={setWords} />
         </Grid>
-        <Grid item xs={12} container justify="center">
+        <Grid item xs={12} container justifyContent="center">
           <MemorizedButton checked={isMemorized} onChange={toggleMemorized} />
         </Grid>
-        <Grid item xs={12} container justify="center">
+        <Grid item xs={12} container justifyContent="center">
           <Typography variant="caption">Practiced {relativeDate()}</Typography>
         </Grid>
-        <Grid item xs={12} container justify="center">
+        <Grid item xs={12} container justifyContent="center">
           <Button variant="contained" color="primary" onClick={practiceScript}>
             Practice Today
           </Button>
         </Grid>
-        <Grid item xs={12} container justify="flex-end">
+        <Grid item xs={12} container justifyContent="flex-end">
           <Box mt={5} mx={2}>
             <Button variant="contained" color="default">
               Edit
