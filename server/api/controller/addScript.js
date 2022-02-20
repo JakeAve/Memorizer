@@ -2,8 +2,8 @@ const { ScriptModel } = require("../../models/Script");
 
 const addScript = async (req, res) => {
   try {
-    const { content } = req.body;
-    const script = await ScriptModel.create({ content });
+    const { content, title } = req.body;
+    const script = await ScriptModel.create({ content, title });
     req.user.scripts.push(script);
     await req.user.save();
     res.json(script);

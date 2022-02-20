@@ -28,6 +28,7 @@ const NewScriptForm = (props) => {
       form.querySelector('textarea').value = '';
       setNewContent('');
       fetchScripts();
+      form.reset();
     } else alert('error', 'Something went wrong', 3000);
   };
 
