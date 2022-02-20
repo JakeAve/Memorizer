@@ -1,9 +1,9 @@
-import "./WordContent.css";
-import React, { useMemo } from "react";
-import { Typography } from "@material-ui/core";
+import './WordContent.css';
+import React, { useMemo } from 'react';
+import { Box, Typography } from '@material-ui/core';
 
 const show = (e) => {
-  e.target.classList.toggle("hidden");
+  e.target.classList.toggle('hidden');
 };
 
 const WordContent = (props) => {
@@ -26,7 +26,7 @@ const WordContent = (props) => {
 
     const result = words.map(({ value, hidden }, index) => (
       <React.Fragment key={index}>
-        <span onClick={show} className={hidden ? "hidden" : ""}>
+        <span onClick={show} className={hidden ? 'hidden' : ''}>
           {value}
         </span>
         &nbsp;
@@ -36,7 +36,11 @@ const WordContent = (props) => {
     return result;
   }, [wordPercentage, content]);
 
-  return <Typography className="word-content">{wordContent}</Typography>;
+  return (
+    <Box maxWidth={500}>
+      <Typography className="word-content">{wordContent}</Typography>;
+    </Box>
+  );
 };
 
 export default WordContent;

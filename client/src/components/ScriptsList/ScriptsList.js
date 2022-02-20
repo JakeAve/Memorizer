@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { Box } from '@material-ui/core';
 
 const ListItemLink = (props) => {
-  const { _id, content, memorized, lastPracticed, selected } = props;
+  const { _id, content, memorized, lastPracticed, selected, title } = props;
   <ListItemText primary="Spam" />;
   return (
     <ListItem
@@ -23,7 +23,7 @@ const ListItemLink = (props) => {
         {memorized ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
       </ListItemIcon>
       <ListItemText
-        primary={content.slice(0, 50)}
+        primary={title?.slice(0, 50) || content.slice(0, 50)}
         secondary={new Date(lastPracticed).toDateString()}
       />
     </ListItem>
